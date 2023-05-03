@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mesto</title>
+    <link rel="icon" href="<%=require('./image/favicon-32x32.png')%>" type="image/x-icon">
+  </head>
+  <body class="page-color">
+    <header class="header">
+      <img
+        class="header__logo"
+        src="<%=require('./image/logo.svg')%>"
+        alt="Место"
+      />
+    </header>
+
+    <main class="page">
+      <section class="profile">
+        <div class="profile__avatar-container">
+          <img
+            class="profile__avatar"
+            src="<%=require('./image/Avatar.jpg')%>"
+            alt="Фото профиля"
+          />
+          <button
+            class="profile__btn-change-avatar-img"
+            type="button"
+            aria-label="Изменить фотографию"
+          >
+            <img
+              src="<%=require('./image/pencil-avatar.svg')%>"
+              alt="Редактировать"
+            />
+          </button>
+        </div>
+        <div class="profile__info">
+          <h1 class="profile__title">Жак-Ив Кусто</h1>
+          <button
+            class="profile__edit"
+            type="button"
+            aria-label="Редактиравать профиль"
+          ></button>
+          <p class="profile__subtitle">Исследователь океана</p>
+        </div>
+        <button
+          class="profile__add"
+          type="button"
+          aria-label="Добавить"
+        ></button>
+      </section>
+
+      <div>
+        <ul class="cards"></ul>
+      </div>
+    </main>
+    <footer class="footer">
+      <p class="footer__copyright">&copy; 2023 Mesto Russia</p>
+    </footer>
+
+    <div class="popup" id="profile-info">
+      <article class="popup-container">
+        <button class="popup__close" type="button" aria-label="X"></button>
+        <h2 class="popup-container__title">Редактировать профиль</h2>
+        <form class="form form-profile" name="form-profile" method="post" novalidate>
+          <fieldset class="form__input form__input-profile">
+            <label for="input-name"></label>
+            <input
+              class="form__item"
+              type="text"
+              id="input-name"
+              name="name"
+              placeholder="Ваше имя"
+              minlength="2"
+              maxlength="40"
+              pattern="^[A-Za-zА-Яа-яЁё\s]+$"
+              data-error-message="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы"
+              required
+            />
+            <span class="input-name-error form__item-error"></span>
+            <label for="input-profession"></label>
+            <input
+              class="form__item"
+              type="text"
+              id="input-profession"
+              name="about"
+              placeholder="Профессия или хобби"
+              minlength="2"
+              maxlength="200"
+              pattern="^[A-Za-zА-Яа-яЁё\s]+$"
+              data-error-message="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы"
+              required
+            />
+            <span class="input-profession-error form__item-error"></span>
+            <button
+              class="form__button"
+              id="profile-info-button"
+              type="submit"
+              aria-label="Сохранить"
+            >
+              Сохранить
+            </button>
+          </fieldset>
+        </form>
+      </article>
+    </div>
+
+    <div class="popup" id="popup-new-card">
+      <article class="popup-container">
+        <button class="popup__close" type="button" aria-label="X"></button>
+        <h2 class="popup-container__title">Новое место</h2>
+        <form class="form form-place" name="form-place" method="post" novalidate>
+          <fieldset class="form__input">
+            <label for="input-name-place"></label>
+            <input
+              class="form__item"
+              type="text"
+              id="input-name-place"
+              name="name"
+              placeholder="Название"
+              minlength="2"
+              maxlength="30"
+              pattern="^[A-Za-zА-Яа-яЁё\s]+$"
+              data-error-message="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы"
+              required
+            />
+            <span class="input-name-place-error form__item-error"></span>
+            <label for="input-link"></label>
+            <input
+              class="form__item"
+              type="url"
+              id="input-link"
+              name="link"
+              placeholder="Ссылка на картинку"
+              required
+            />
+            <span class="input-link-error form__item-error"></span>
+            <button
+              class="form__button"
+              id="create-new-card"
+              type="submit"
+              aria-label="Создать"
+            >
+              Создать
+            </button>
+          </fieldset>
+        </form>
+      </article>
+    </div>
+
+    <div class="popup" id="popup-change-avatar-img">
+      <article class="popup-container">
+        <button class="popup__close" type="button" aria-label="X"></button>
+        <h2 class="popup-container__title">Обновить аватар</h2>
+        <form
+          class="form change-avatar-img"
+          name="add"
+          method="post"
+          novalidate
+        >
+          <fieldset class="form__input">
+            <label for="input-change-avatar-img"></label>
+            <input
+              class="form__item"
+              type="url"
+              id="input-change-avatar-img"
+              name="changeAvatarImg"
+              placeholder="https://somewebsite.com/someimage.jpg"
+              required
+            />
+            <span class="input-change-avatar-img-error form__item-error"></span>
+            <button
+              class="form__button"
+              id="create-avatar-img"
+              type="submit"
+              aria-label="Сохранить"
+            >
+              Сохранить
+            </button>
+          </fieldset>
+        </form>
+      </article>
+    </div>
+
+    <div class="popup popup-image__background">
+      <article class="popup-image">
+        <div class="popup-image__container">
+          <img src="#" alt="#" class="popup-image__photo" />
+          <button class="popup__close" type="button" aria-label="X"></button>
+          <h3 class="popup-image__text">Картинка</h3>
+        </div>
+      </article>
+    </div>
+
+    <template id="card-template">
+      <li class="card">
+        <img class="card__img" src="" alt="" />
+        <button
+          class="card__trash"
+          type="button"
+          aria-label="Корзина"
+        ></button>
+        <div class="card__buttom">
+          <h3 class="card__title"></h3>
+          <div class="card__heart-number">
+            <button
+              class="card__heart"
+              type="button"
+              aria-label="Сердечко"
+            ></button>
+            <p class="card__number-like"></p>
+          </div>
+        </div>
+      </li>
+    </template>
+  </body>
+</html>

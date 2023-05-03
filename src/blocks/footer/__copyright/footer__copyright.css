@@ -1,0 +1,32 @@
+.footer__copyright {
+  color: #545454;
+  font-family: 'Inter' 'Arial', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  margin: 66px auto 60px 0;
+}
+
+@media screen and (max-width: 1023px) {
+  .footer__copyright {
+    margin-left: calc((100% - 282px*2 + 17px)/2);
+  }
+  
+}
+
+@media screen and (max-width: 602px) {
+  .footer__copyright {
+    margin-left: calc((100% - 282px)/2);
+
+  }
+  
+}
+
+@media screen and (max-width: 320px) {
+  .footer__copyright {
+    font-size: 14px;
+    line-height: 17px;
+    margin: 48px auto 36px 19px;
+  }
+}

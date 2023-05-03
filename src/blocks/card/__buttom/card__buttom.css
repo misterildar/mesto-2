@@ -1,0 +1,8 @@
+.card__buttom {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 20px 26px 21px;
+  height: 79px;
+  box-sizing: border-box;
+  margin: 0;
+}
